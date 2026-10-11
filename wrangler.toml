@@ -1,0 +1,17 @@
+name = "free-instagram-reel-publisher"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/auth/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "reel-publisher-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+GRAPH_API_VERSION = "v24.0"
+MAX_VIDEO_BYTES = "95000000"

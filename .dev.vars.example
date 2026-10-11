@@ -1,0 +1,12 @@
+# Copy to .dev.vars for local development only. Never commit .dev.vars.
+ADMIN_PASSWORD="choose-a-long-unique-password"
+SESSION_SECRET="replace-with-at-least-32-random-characters"
+TOKEN_ENCRYPTION_KEY="base64-encoded-32-byte-key"
+# Use the Instagram App ID/Secret from Instagram API with Instagram Login, not Facebook App credentials.
+INSTAGRAM_APP_ID="your-instagram-app-id"
+INSTAGRAM_APP_SECRET="your-instagram-app-secret"
+INSTAGRAM_REDIRECT_URI="https://YOUR-WORKER.YOUR-SUBDOMAIN.workers.dev/auth/callback"
+# Optional: exact authorization URL supplied by Meta's Instagram Login setup, if provided.
+# INSTAGRAM_AUTHORIZE_URL="https://www.instagram.com/oauth/authorize"
+GRAPH_API_VERSION="v24.0"
+MAX_VIDEO_BYTES="95000000"

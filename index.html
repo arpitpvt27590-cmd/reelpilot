@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101014">
+<title>ReelPilot — Instagram Publisher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="login-screen" class="login-wrap hidden">
+  <div class="login-card"><div class="brand-mark">R</div><p class="eyebrow">PRIVATE WORKSPACE</p><h1>Welcome back.</h1><p class="muted">Sign in to manage your Instagram publishing.</p>
+    <form id="login-form"><label for="password">Dashboard password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button class="primary full" type="submit">Unlock dashboard <span>↗</span></button><p id="login-error" class="error"></p></form>
+  </div>
+</div>
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">R</div><div><strong>reelpilot</strong><small>CREATOR WORKSPACE</small></div></div>
+    <nav><a class="nav-item active" href="#publisher"><span>▣</span> Publisher</a><a class="nav-item" href="#history"><span>◷</span> Publishing history</a></nav>
+    <div class="sidebar-bottom"><div class="online-dot"></div><div><strong>Private workspace</strong><small>Connected securely</small></div><button id="logout" class="icon-button" title="Sign out">↗</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><p class="eyebrow">INSTAGRAM AUTOMATION</p><h1>Reel publisher</h1></div><div class="top-actions"><span class="live-pill"><i></i> Service online</span><button id="connect" class="secondary">＋ Connect account</button></div></header>
+    <div id="notice" class="notice hidden"></div>
+    <section class="stats">
+      <article class="stat-card"><span>Connected accounts</span><strong id="stat-accounts">0</strong><small>Professional accounts</small></article>
+      <article class="stat-card"><span>Publishing jobs</span><strong id="stat-jobs">0</strong><small>Recent activity</small></article>
+      <article class="stat-card"><span>Successful posts</span><strong id="stat-published">0</strong><small>Confirmed by Meta</small></article>
+    </section>
+    <section id="publisher" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">NEW PUBLISHING JOB</p><h2>Create a Reel</h2><p class="muted">Upload once, publish to the accounts you choose.</p></div><span class="step-tag">01 / COMPOSE</span></div>
+      <div class="compose-grid">
+        <div class="left-col">
+          <div class="field-label"><label>Video file</label><span class="muted tiny">MP4 · up to 95 MB</span></div>
+          <label id="dropzone" class="dropzone" for="video-file"><input id="video-file" type="file" accept="video/mp4,.mp4"><div class="upload-icon">↑</div><strong>Drop your Reel here</strong><span>or <u>browse files</u> from your device</span><small>MP4 only · 3 seconds to 15 minutes recommended</small></label>
+          <div id="file-info" class="file-info hidden"><div class="file-icon">▶</div><div class="file-meta"><strong id="file-name">video.mp4</strong><span id="file-size">0 MB</span></div><button id="remove-file" class="icon-button" title="Remove video">×</button></div>
+          <div id="video-wrap" class="video-wrap hidden"><video id="preview" controls playsinline></video><div class="video-overlay"><span>PREVIEW</span></div></div>
+          <div class="field-label caption-label"><label for="caption">Caption</label><span class="muted tiny"><b id="caption-count">0</b> / 2,200</span></div>
+          <textarea id="caption" rows="6" maxlength="2200" placeholder="Write something worth watching…&#10;&#10;Add your hashtags, emojis and @mentions."></textarea>
+          <div class="caption-tools"><span>↵ Line breaks supported</span><span># Hashtags · @mentions</span></div>
+          <details class="cover-details"><summary>Optional cover image URL</summary><p class="muted tiny">Provide a publicly accessible HTTPS image URL. Uploading a local cover image requires separate storage, which this free build avoids.</p><input id="cover-url" type="url" placeholder="https://example.com/cover.jpg"></details>
+        </div>
+        <div class="right-col">
+          <div class="subpanel"><div class="subpanel-heading"><div><h3>Publish to</h3><p class="muted tiny">Choose one or multiple accounts</p></div><button id="select-all" class="text-button">Select all</button></div>
+            <div id="account-list" class="account-list"><div class="empty-accounts"><div class="empty-icon">◎</div><strong>No accounts connected</strong><p>Connect a professional Instagram account to get started.</p></div></div>
+            <div class="account-footer"><span id="selected-count">0 selected</span><button id="manage-accounts" class="text-button">Manage accounts</button></div>
+          </div>
+          <div class="publish-note"><span>ⓘ</span><p>Only publish content you own or have permission to share. Instagram may take a little while to process each video.</p></div>
+          <button id="publish" class="primary publish-button" disabled><span class="publish-label">Publish Reel</span><span class="button-arrow">↗</span></button>
+          <p class="muted tiny center">Each account is tracked individually. Failed jobs are never marked successful.</p>
+        </div>
+      </div>
+      <div id="results" class="results hidden"><div class="results-head"><h3>Publishing results</h3><span id="results-progress" class="muted tiny"></span></div><div id="result-list"></div></div>
+    </section>
+    <section id="history" class="panel history-panel"><div class="section-heading"><div><p class="eyebrow">ACTIVITY LOG</p><h2>Publishing history</h2><p class="muted">A record of recent attempts and account-specific outcomes.</p></div><button id="refresh-history" class="secondary">↻ Refresh</button></div>
+      <div id="history-list" class="history-list"><div class="history-empty"><div class="empty-icon">◷</div><strong>No publishing activity yet</strong><p>Your completed and failed jobs will appear here.</p></div></div>
+    </section>
+    <footer><span>ReelPilot · Independent tool using Meta's official API</span><span>Tokens encrypted at rest · No browser token storage</span></footer>
+  </main>
+</div>
+<div id="confirm-modal" class="modal hidden"><div class="modal-card"><div class="modal-symbol">↗</div><h2>Publish this Reel?</h2><p id="confirm-copy" class="muted">Your video will be sent to the selected accounts.</p><div class="modal-actions"><button id="cancel-publish" class="secondary">Cancel</button><button id="confirm-publish" class="primary">Confirm publish</button></div></div></div>
+<div id="account-modal" class="modal hidden"><div class="modal-card"><button id="close-account-modal" class="icon-button close-modal">×</button><p class="eyebrow">ACCOUNT MANAGEMENT</p><h2>Connected accounts</h2><p class="muted">Connect professional accounts through Instagram's official authorization screen. Personal accounts are not eligible for API publishing.</p><div id="manage-account-list" class="manage-account-list"></div><div class="modal-actions"><button id="modal-connect" class="primary full">＋ Connect another account</button></div></div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="/app.js" defer></script>
+</body></html>

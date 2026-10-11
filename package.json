@@ -1,0 +1,16 @@
+{
+  "name": "free-instagram-reel-publisher",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create reel-publisher-db",
+    "db:migrate:local": "wrangler d1 migrations apply reel-publisher-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply reel-publisher-db --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.30.0"
+  }
+}
